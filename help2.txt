@@ -68,5 +68,27 @@ railway connect Postgres
 pgAdmin
 https://www.pgadmin.org/download/
 
+//
+git instlat https://git-scm.com/downloads/win
+si pt pe alt ps
+Clonezi proiectul tău din GitHub:
 
+bash
+Copiază
+Editează
+git clone https://github.com/aldbog/apppta.git
+cd apppta
+Rulezi fișierul:
 
+bash
+Copiază
+Editează
+start_all.bat
+🎉 Atât! Aplicația ta va porni și va fi gata de testare.
+//
+
+// sincronizare cu GitHub dupa modificari 
+git status               ← vezi ce s-a schimbat
+git add .                ← adaugă toate fișierele modificate
+git commit -m "Adăugat cercetareintrare în verificare"
+git push                 ← trimite pe GitHub
