@@ -92,3 +92,7 @@ git status               ← vezi ce s-a schimbat
 git add .                ← adaugă toate fișierele modificate
 git commit -m "Adăugat cercetareintrare în verificare"
 git push                 ← trimite pe GitHub
+
+
+//exclude din git daca ai add
+git rm -r --cached venv/
