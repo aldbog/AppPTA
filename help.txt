@@ -1,0 +1,1 @@
+Aceasta este aplicația ta Railway + Flask + PostgreSQL.

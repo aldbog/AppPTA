@@ -1,0 +1,72 @@
+APP Necesar
+in cmd pe pc
+cd C:\APP
+Creezi mediul virtual (o singură dată):
+
+bash
+Copiază
+Editează
+python -m venv venv
+Activezi mediul:
+
+bash
+Copiază
+Editează
+call venv\Scripts\activate
+Instalezi pachetele:
+
+bash
+Copiază
+Editează
+pip install -r requirements.txt
+b. De fiecare dată când pornești aplicația:
+rulezi startcmd.bat:
+
+bat
+Copiază
+Editează
+call venv\Scripts\activate
+python app.py
+pause
+
+Pentru a-l sincroniza cu ce ai în mediul virtual activ, rulezi:
+
+bash
+Copiază
+Editează
+pip freeze > requirements.txt
+Asta va scrie toate pachetele instalate (cu versiuni) în requirements.txt.
+
+Exemplu:
+
+txt
+Copiază
+Editează
+Flask==2.3.2
+psycopg2==2.9.9
+requests==2.31.0
+
+pip install psycopg2
+
+
+GITHUB
+https://github.com/
+
+
+Railway
+proiect nou
+
+Connection URL
+postgresql://postgres:EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx@nozomi.proxy.rlwy.net:53046/railway
+
+Raw psql command
+PGPASSWORD=EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx psql -h nozomi.proxy.rlwy.net -U postgres -p 53046 -d railway
+
+Railway CLI connect command
+railway connect Postgres
+
+pgAdmin
+https://www.pgadmin.org/download/
+
+
+
