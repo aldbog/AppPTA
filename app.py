@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask, render_template
 from PaginaTA.Pontaj.routes import pontaj_bp
 from PaginaTA.Cercetare.routes import cercetare_bp
@@ -36,4 +36,4 @@ def verifica_email():
         return jsonify({"found": False})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+   app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
