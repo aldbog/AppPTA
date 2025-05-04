@@ -10,14 +10,14 @@ app = Flask(__name__, template_folder="PaginaTA/templates")
 app.register_blueprint(pontaj_bp, url_prefix="/pontaj")
 app.register_blueprint(cercetare_bp, url_prefix="/cercetare")
 
-# Funcție de conectare la Railway DB
+# Funcția de conectare la baza de date Railway
 def get_db_connection():
     return psycopg2.connect(
-        host: "nozomi.proxy.rlwy.net"  
-        port: 53046  
-        user: "postgres"
-        password: "EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx"  
-        database: "railway"
+        host="nozomi.proxy.rlwy.net",
+        database="railway",
+        user="postgres",
+        password="EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx",
+        port=53046
     )
 
 @app.route("/")
