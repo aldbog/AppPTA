@@ -32,14 +32,16 @@ def verifica_email():
     if not email or not email.endswith("@e-uvt.ro"):
         return jsonify({
             "uvt": 0,
-            "paginataintrare": 0,
-            "cercetareintrare": 0
+            "paginata_dru": 0,
+            "ang_proiecte": 0,
+            "ang_ai": 0,
+            "dep_ang_proiecte": "-"
         })
 
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("""
-        SELECT paginataintrare, cercetareintrare
+        SELECT paginata_dru, ang_proiecte, ang_ai, dep_ang_proiecte
         FROM useriapp
         WHERE email = %s
     """, (email,))
@@ -50,15 +52,19 @@ def verifica_email():
     if row:
         return jsonify({
             "uvt": 1,
-            "paginataintrare": row[0],
-            "cercetareintrare": row[1]
+            "paginata_dru": row[0],
+            "ang_proiecte": row[1],
+            "ang_ai": row[2],
+            "dep_ang_proiecte": row[3] if row[3] else "-"
         })
     else:
         return jsonify({
             "uvt": 1,
-            "paginataintrare": 0,
-            "cercetareintrare": 0
+            "paginata_dru": 0,
+            "ang_proiecte": 0,
+            "ang_ai": 0,
+            "dep_ang_proiecte": "-"
         })
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(host="0.
