@@ -24,28 +24,29 @@ def get_db_connection():
 def home():
     return render_template("index.html")
 
-@app.route("/verificaemail")
-def verifica_email():
-    email = request.args.get("email")
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT paginataintrare, cercetareintrare
-        FROM useriapp
-        WHERE email = %s
-    """, (email,))
-    row = cur.fetchone()
-    cur.close()
-    conn.close()
-
-    if row:
-        return jsonify({
-            "found": True,
-            "paginataintrare": row[0],
-            "cercetareintrare": row[1]
-        })
-    else:
-        return jsonify({"found": False})
+# Email e valid și din domeniu → conectare DB
+conn = get_db_connection()
+cur = conn.cursor()
+cur.execute("""
+    SELECT paginataintrare, cercetareintrare
+    FROM useriapp
+    WHERE email = %s
+""", (email,))
+row = cur.fetchone()
+cur.close()
+conn.close()
+if row:
+    return jsonify({
+        "uvt": 1,
+        "paginataintrare": row[0],
+        "cercetareintrare": row[1]
+    })
+else:
+    return jsonify({
+        "uvt": 1,
+        "paginataintrare": 0,
+        "cercetareintrare": 0
+    })
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
