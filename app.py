@@ -1,11 +1,13 @@
 import os
 from flask import Flask, request, jsonify, render_template
 import psycopg2
+from flask_cors import CORS
 
 from PaginaTA.Pontaj.routes import pontaj_bp
 from PaginaTA.Cercetare.routes import cercetare_bp
 
 app = Flask(__name__, template_folder="PaginaTA/templates")
+CORS(app)  # ✅ Apel după inițializarea lui `app`
 
 app.register_blueprint(pontaj_bp, url_prefix="/pontaj")
 app.register_blueprint(cercetare_bp, url_prefix="/cercetare")
@@ -68,4 +70,3 @@ def verifica_email():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-
