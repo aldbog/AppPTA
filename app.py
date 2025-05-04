@@ -41,7 +41,7 @@ def verifica_email():
     if row:
         return jsonify({
             "found": True,
-            "paginataintare": row[0],
+            "paginataintrare": row[0],
             "cercetareintrare": row[1]
         })
     else:
