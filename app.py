@@ -30,7 +30,7 @@ def verifica_email():
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("""
-        SELECT paginataintare, cercetareintrare
+        SELECT paginataintrare, cercetareintrare
         FROM useriapp
         WHERE email = %s
     """, (email,))
