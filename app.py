@@ -13,11 +13,11 @@ app.register_blueprint(cercetare_bp, url_prefix="/cercetare")
 # Funcție de conectare la Railway DB
 def get_db_connection():
     return psycopg2.connect(
-        host: nozomi.proxy.rlwy.net  
+        host: "nozomi.proxy.rlwy.net"  
         port: 53046  
-        user: postgres  
-        password: EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx  
-        database: railway
+        user: "postgres"
+        password: "EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx"  
+        database: "railway"
     )
 
 @app.route("/")
