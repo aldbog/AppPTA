@@ -1,5 +1,7 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, request, jsonify, render_template
+import psycopg2
+
 from PaginaTA.Pontaj.routes import pontaj_bp
 from PaginaTA.Cercetare.routes import cercetare_bp
 
@@ -7,6 +9,16 @@ app = Flask(__name__, template_folder="PaginaTA/templates")
 
 app.register_blueprint(pontaj_bp, url_prefix="/pontaj")
 app.register_blueprint(cercetare_bp, url_prefix="/cercetare")
+
+# Funcție de conectare la Railway DB
+def get_db_connection():
+    return psycopg2.connect(
+        host="nozomi.proxy.rlwy.net",  # exemplu
+        database="railway",
+        user="postgres",
+        password="parola_ta",
+        port=53046  # portul Railway
+    )
 
 @app.route("/")
 def home():
@@ -36,4 +48,5 @@ def verifica_email():
         return jsonify({"found": False})
 
 if __name__ == "__main__":
-   app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+

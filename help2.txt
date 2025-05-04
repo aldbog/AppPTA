@@ -93,6 +93,11 @@ git add .                ← adaugă toate fișierele modificate
 git commit -m "Adăugat cercetareintrare în verificare"
 git push                 ← trimite pe GitHub
 
+Situație	Comandă
+Ai modificat doar 1 fișier	git add numefisier.py
+Vrei să vezi ce s-a schimbat exact	git diff
+Vrei să adaugi și .gitignore nou	git add .gitignore înainte de commit
+
 
 //exclude din git daca ai add
 git rm -r --cached venv/
