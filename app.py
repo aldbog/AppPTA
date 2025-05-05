@@ -9,6 +9,30 @@ from PaginaTA.Cercetare.routes import cercetare_bp
 app = Flask(__name__, template_folder="PaginaTA/templates")
 CORS(app)  # ✅ Apel după inițializarea lui `app`
 
+API_KEY = "uvt2014"  # 🔐 setează un token secret aici
+from functools import wraps
+from flask import request, jsonify
+
+def require_api_key(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = (
+            request.headers.get("Authorization") or
+            request.args.get("api_key") or
+            request.cookies.get("api_key")
+        )
+
+        # Normalizează formatul (ex: "Bearer secrettoken123")
+        if token and token.startswith("Bearer "):
+            token = token[7:]
+
+        if token != API_KEY:
+            return jsonify({"error": "Unauthorized"}), 401
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 app.register_blueprint(pontaj_bp, url_prefix="/pontaj")
 app.register_blueprint(cercetare_bp, url_prefix="/cercetare")
 
@@ -27,7 +51,9 @@ def home():
     return render_template("index.html")
 
 @app.route("/verificaemail")
+@require_api_key
 def verifica_email():
+
     email = request.args.get("email", "").strip().lower()
 
     # Verificare domeniu UVT

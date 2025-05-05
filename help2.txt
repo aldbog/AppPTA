@@ -101,3 +101,17 @@ Vrei să adaugi și .gitignore nou	git add .gitignore înainte de commit
 
 //exclude din git daca ai add
 git rm -r --cached venv/
+
+
+Dacă folosești ODBC:
+În formularul de configurare:
+
+Server: nozomi.proxy.rlwy.net
+
+Port: 53046
+
+Database: railway
+
+Username: postgres
+
+Password: EeXrqIxEarrSNiJRwyrfgNwONgKqHMWx
