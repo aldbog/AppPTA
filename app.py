@@ -63,13 +63,15 @@ def verifica_email():
             "paginata_dru": 0,
             "ang_proiecte": 0,
             "ang_ai": 0,
+	    "admin": 0,
             "dep_ang_proiecte": "-"
         })
 
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("""
-        SELECT paginata_dru, ang_proiecte, ang_ai, dep_ang_proiecte
+        SELECT paginata_dru, ang_proiecte, ang_ai, dep_ang_proiecte, admin
+
         FROM useriapp
         WHERE email = %s
     """, (email,))
@@ -83,6 +85,7 @@ def verifica_email():
             "paginata_dru": row[0],
             "ang_proiecte": row[1],
             "ang_ai": row[2],
+	    "admin": row[4],
             "dep_ang_proiecte": row[3] if row[3] else "-"
         })
     else:
@@ -91,6 +94,7 @@ def verifica_email():
             "paginata_dru": 0,
             "ang_proiecte": 0,
             "ang_ai": 0,
+	    "admin": 0,
             "dep_ang_proiecte": "-"
         })
 
